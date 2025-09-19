@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Tugas 2 - Data Pegawai</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container my-5">
+  <h2 class="text-center mb-4">Data Pegawai</h2>
+
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped text-center align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th>Nama Pegawai</th>
+          <th>Umur</th>
+          <th>Jabatan</th>
+          <th>Status</th>
+          <th>Gaji Pokok</th>
+          <th>Tunjangan Jabatan</th>
+          <th>BPJS</th>
+          <th>Tunjangan Keluarga</th>
+        </tr>
+      </thead>
+      <tbody id="data-pegawai">
+
+      </tbody>
+      <tfoot class="table-secondary fw-bold" id="total-gaji">
+        
+      </tfoot>
+    </table>
+  </div>
+</div>
+
+<script>
+  let nama = "dodi prayodi";
+  let umur = 25;
+  let jabatan = "manajer";
+  let status = "menikah";
+
+  let gapok;
+  if (jabatan === "manajer") {
+    gapok = 15000000;
+  } else if (jabatan === "asisten manajer") {
+    gapok = 10000000;
+  } else {
+    gapok = 5000000;
+  }
+
+  let tunjanganJabatan = 0.15 * gapok;
+
+  let bpjs = 0.10 * gapok;
+
+  let tunjanganKeluarga = (status === "menikah") ? 0.20 * gapok : 0;
+
+  let total = gapok + tunjanganJabatan + bpjs + tunjanganKeluarga;
+
+  document.getElementById("data-pegawai").innerHTML = `
+    <tr>
+      <td>${nama}</td>
+      <td>${umur}</td>
+      <td>${jabatan}</td>
+      <td>${status}</td>
+      <td>Rp ${gapok.toLocaleString()}</td>
+      <td>Rp ${tunjanganJabatan.toLocaleString()}</td>
+      <td>Rp ${bpjs.toLocaleString()}</td>
+      <td>Rp ${tunjanganKeluarga.toLocaleString()}</td>
+    </tr>
+  `;
+
+  document.getElementById("total-gaji").innerHTML = `
+    <tr>
+      <td colspan="8">Total Gaji: Rp ${total.toLocaleString()}</td>
+    </tr>
+  `;
+</script>
+
+</body>
+</html>
